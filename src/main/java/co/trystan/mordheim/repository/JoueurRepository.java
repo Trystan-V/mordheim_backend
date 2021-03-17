@@ -1,6 +1,9 @@
 package co.trystan.mordheim.repository;
 
+import co.trystan.mordheim.model.Joueur;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface JoueurRepository extends JpaRepository<JoueurRepository, Long> {
+@Repository
+public interface JoueurRepository extends JpaRepository<Joueur, Long> {
 }
