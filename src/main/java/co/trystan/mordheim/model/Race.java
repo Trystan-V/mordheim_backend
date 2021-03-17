@@ -11,12 +11,11 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-public class Bande {
+public class Race {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
-
 }
