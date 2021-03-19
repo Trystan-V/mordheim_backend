@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,6 +15,18 @@ public class BandeController {
 
     @Autowired
     BandeService bandeService;
+
+    @CrossOrigin
+    @GetMapping("/mesbandes")
+    ResponseEntity<List<Bande>> getAllBande(){
+        List<Bande> listBande;
+        listBande = bandeService.findAll();
+        if (listBande.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(listBande);
+    }
+
 
     @CrossOrigin
     @GetMapping("/mesbandes/{id}")

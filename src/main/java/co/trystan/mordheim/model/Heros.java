@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-public class Heros {
+public class Heros extends Personnage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-public class Caracteristique {
+public class Caracteristique extends Personnage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

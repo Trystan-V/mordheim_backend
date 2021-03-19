@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -15,6 +16,11 @@ public class BandeServiceImpl implements BandeService {
 
     @Autowired
     private BandeRepository bandeRepository;
+
+    @Override
+    public List<Bande> findAll() {
+        return bandeRepository.findAll();
+    }
 
     @Override
     public Optional<Bande> findById(Long id) {
