@@ -1,8 +1,6 @@
 package co.trystan.mordheim.controller;
 
-import co.trystan.mordheim.model.Bande;
 import co.trystan.mordheim.model.Blessure;
-import co.trystan.mordheim.model.Race;
 import co.trystan.mordheim.service.BlessureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
 package co.trystan.mordheim.controller;
 
 import co.trystan.mordheim.model.Race;
-import co.trystan.mordheim.repository.RaceRepository;
 import co.trystan.mordheim.service.RaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

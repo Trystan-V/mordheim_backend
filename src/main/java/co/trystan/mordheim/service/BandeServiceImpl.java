@@ -27,4 +27,27 @@ public class BandeServiceImpl implements BandeService {
         return bandeRepository.findById(id);
     }
 
+    @Override
+    public Bande insert(Bande bande) {
+        return bandeRepository.save(bande);
+    }
+
+    @Override
+    public Bande update(Long id, Bande bande){
+        Optional<Bande> optionalBande = this.findById(id);
+        if (optionalBande.isPresent()){
+            Bande bandeToUpdate = optionalBande.get();
+            bandeToUpdate.setName(bande.getName());
+            return bandeRepository.save(bandeToUpdate);
+        }
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Optional<Bande> bande = this.findById(id);
+        if (bande.isPresent()){
+            bandeRepository.delete(bande.get());
+        }
+    }
 }

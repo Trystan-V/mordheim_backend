@@ -7,8 +7,12 @@ import java.util.Optional;
 
 public interface RaceService {
     Optional<Race> findById(Long id);
-    List<Race> findAll (String search);
-    Race insert (Race race);
-    Race update (Long id, Race race);
-    void delete (Long id);
+
+    List<Race> findAll(String search);
+
+    Race insert(Race race);
+
+    Race update(Long id, Race race);
+
+    void delete(Long id);
 }
