@@ -1,7 +1,12 @@
 package co.trystan.mordheim.controller;
 
 import co.trystan.mordheim.model.Bande;
+import co.trystan.mordheim.model.Joueur;
+import co.trystan.mordheim.model.Race;
+import co.trystan.mordheim.repository.BandeRepository;
+import co.trystan.mordheim.repository.JoueurRepository;
 import co.trystan.mordheim.service.BandeService;
+import co.trystan.mordheim.service.JoueurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,13 +14,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/mordheim")
 public class BandeController {
 
     @Autowired
     BandeService bandeService;
+    BandeRepository bandeRepository;
+    JoueurService joueurService;
 
+    /**
+     * Récuperer tout les bandes
+     * @return Une liste de bande
+     */
     @CrossOrigin
     @GetMapping("/mesbandes")
     ResponseEntity<List<Bande>> getAllBande(){
@@ -64,4 +76,20 @@ public class BandeController {
         bandeService.delete(bande.get().getId());
         return ResponseEntity.accepted().build();
     }
+
+/*    @PostMapping("/bandes/race/{idrace}/joueur/{idjoueur}")
+    ResponseEntity<Bande> addBande(@PathVariable("idjoueur") int idjoueur,
+                               @PathVariable("idrace") int idrace) {
+        Bande bande = new Bande();
+        bande.setJoueur(idjoueur);
+        joueurService.findById();
+        bande.setRace(idrace);
+        bande.setName("Ma quatrième bande");
+        bandeRepository.save(bande);
+
+        if(bande == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(bande);
+    }*/
 }
