@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/mordheim")
+@RequestMapping("/mordhei")
 public class RaceController {
 
     @Autowired
