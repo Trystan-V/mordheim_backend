@@ -28,11 +28,11 @@ public class BandeController {
      * Récuperer tout les bandes
      * @return Une liste de bande
      */
-    @CrossOrigin
+
     @GetMapping("/mesbandes")
-    ResponseEntity<List<Bande>> getAllBande(){
+    ResponseEntity<List<Bande>> getAllBande(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "10") int size){
         List<Bande> listBande;
-        listBande = bandeService.findAll();
+        listBande = bandeService.findAll(page, size);
         if (listBande.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -40,7 +40,7 @@ public class BandeController {
     }
 
 
-    @CrossOrigin
+
     @GetMapping("/mesbandes/{id}")
     ResponseEntity<Bande> getBandeById(@PathVariable(value = "id") Long id) {
         Optional<Bande> bande = bandeService.findById(id);
@@ -50,13 +50,13 @@ public class BandeController {
         return ResponseEntity.ok().body(bande.get());
     }
 
-    @CrossOrigin
+
     @PostMapping("/bandes")
     ResponseEntity<Bande> addBande(@RequestBody Bande bande) {
-        return ResponseEntity.ok().body(bandeService.insert(bande));
+        return ResponseEntity.ok(bandeService.insert(bande));
     }
 
-    @CrossOrigin
+
     @PutMapping("/bandes/{id}")
     ResponseEntity<Bande> updateBande(@PathVariable(value = "id")Long id, @RequestBody Bande bande) {
         Bande updateBande = bandeService.update(id, bande);
@@ -66,7 +66,7 @@ public class BandeController {
         return ResponseEntity.ok().body(updateBande);
     }
 
-    @CrossOrigin
+
     @DeleteMapping("bandes/{id}")
     ResponseEntity<Bande> deleteBande(@PathVariable(value = "id")Long id) {
         Optional<Bande> bande = bandeService.findById(id);
@@ -76,6 +76,8 @@ public class BandeController {
         bandeService.delete(bande.get().getId());
         return ResponseEntity.accepted().build();
     }
+
+
 
 /*    @PostMapping("/bandes/race/{idrace}/joueur/{idjoueur}")
     ResponseEntity<Bande> addBande(@PathVariable("idjoueur") int idjoueur,

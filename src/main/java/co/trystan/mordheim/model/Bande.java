@@ -1,6 +1,7 @@
 package co.trystan.mordheim.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
@@ -25,7 +26,6 @@ public class Bande {
 
     }
 
-
     public long getId(){
         return id;
     }
@@ -42,14 +42,34 @@ public class Bande {
         this.name = name;
     }
 
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "idjoueur")
+    @JoinColumn(name = "idjoueur", referencedColumnName = "idjoueur", insertable = false, updatable = false, nullable = false)
     private Joueur joueur;
 
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "idrace")
+    @JoinColumn(name = "idrace", referencedColumnName = "idrace", insertable = false, updatable = false, nullable = false)
     private Race race;
+
+    @Column(name = "idjoueur")
+    private Long joueurid;
+
+    @Column(name = "idrace")
+    private Long raceid;
 
 }

@@ -30,12 +30,12 @@ public class BandeRepositoryTest {
     @Test
     public void findAllTest() {
     // GIVEN
-        Joueur trystan = new Joueur(1,"trystan","password");
+/*        Joueur trystan = new Joueur(1,"trystan","password");
         entityManager.persist(trystan);
         Race MercenaireMariumburger = new Race(1L,"Mercenaire Mariemburger");
         entityManager.persist(MercenaireMariumburger);
-        Bande premiereBande = new Bande(1,"Ma premiere bande",trystan,MercenaireMariumburger);
-        entityManager.persist(premiereBande);
+        //Bande premiereBande = new Bande(1,"Ma premiere bande",trystan,MercenaireMariumburger);
+        //entityManager.persist(premiereBande);*/
 
      //WHEN
         List<Bande> bandesSelection = bandeRepository.findAll();

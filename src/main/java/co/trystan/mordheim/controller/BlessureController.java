@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/mordheim")
 public class BlessureController {
@@ -16,7 +17,6 @@ public class BlessureController {
     @Autowired
     BlessureService blessureService;
 
-    @CrossOrigin
     @GetMapping("/blessures/{id}")
     ResponseEntity<Blessure> getBlessureById(@RequestParam(value = "id")Long id){
         Optional<Blessure> blessure = blessureService.findById(id);
@@ -26,7 +26,6 @@ public class BlessureController {
         return ResponseEntity.ok().body(blessure.get());
     }
 
-    @CrossOrigin
     @GetMapping("/blessures")
     ResponseEntity<List<Blessure>> getAllBlessure(){
         List<Blessure> listBlessure;
@@ -37,8 +36,7 @@ public class BlessureController {
         return ResponseEntity.ok().body(listBlessure);
     }
 
-    @CrossOrigin
-    @PostMapping
+    @PostMapping("/blessures")
     ResponseEntity<Blessure> addBlessure(@RequestBody Blessure blessure) {
         return ResponseEntity.ok().body(blessureService.insert(blessure));
     }

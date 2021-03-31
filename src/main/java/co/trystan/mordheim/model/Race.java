@@ -2,8 +2,8 @@ package co.trystan.mordheim.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -21,17 +21,4 @@ public class Race {
 
     private String name;
 
-    public Race(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    @OneToMany(mappedBy = "race")
-    @JsonIgnore
-    private List<Bande> bandes;
-
-
-    public Race() {
-
-    }
 }

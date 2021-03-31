@@ -1,8 +1,11 @@
 package co.trystan.mordheim.service;
 
 import co.trystan.mordheim.model.Bande;
+import co.trystan.mordheim.model.Joueur;
+import co.trystan.mordheim.model.Race;
 import co.trystan.mordheim.repository.BandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -18,8 +21,8 @@ public class BandeServiceImpl implements BandeService {
     private BandeRepository bandeRepository;
 
     @Override
-    public List<Bande> findAll() {
-        return bandeRepository.findAll();
+    public List<Bande> findAll(int page, int size) {
+        return bandeRepository.findAll(PageRequest.of(page, size)).toList();
     }
 
     @Override
@@ -49,5 +52,15 @@ public class BandeServiceImpl implements BandeService {
         if (bande.isPresent()){
             bandeRepository.delete(bande.get());
         }
+    }
+
+    @Override
+    public List<Race> findAllRaceByBandId(Long id) {
+        return bandeRepository.findAllRaceByBandId(id);
+    }
+
+    @Override
+    public List<Joueur> findAllJoueurByBandId(Long id) {
+        return bandeRepository.findAllJoueurByBandId(id);
     }
 }

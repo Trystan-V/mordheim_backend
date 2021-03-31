@@ -1,9 +1,8 @@
 package co.trystan.mordheim.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -23,15 +22,7 @@ public class Joueur {
 
     private String password;
 
-
-
-//    @OneToMany(mappedBy = "joueur")
-//    private List<Bande> bandes;
-
-    @OneToMany(mappedBy = "joueur")
-    @JsonIgnore
-    private List<Bande> bandes;
-
+    
     public Joueur(long id, String identifiant, String password) {
         this.id = id;
         this.identifiant = identifiant;
