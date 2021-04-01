@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/mordhei")
+@RequestMapping("/races")
 public class RaceController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class RaceController {
     @Autowired
     BandeService bandeService;
 
-    @GetMapping("/races/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<Race> getRaceById(@PathVariable(value = "id")Long id) {
         Optional<Race> race = raceService.findById(id);
         if (race.isEmpty()){
@@ -32,7 +32,7 @@ public class RaceController {
         return ResponseEntity.ok().body(race.get());
     }
 
-    @GetMapping("/races")
+    @RequestMapping(value = "", params = {"search"}, method = RequestMethod.GET)
     ResponseEntity<List<Race>> getAllRace(@RequestParam(value = "search", defaultValue = "")String search) {
         List<Race> listRace;
         try {
@@ -43,13 +43,13 @@ public class RaceController {
         return ResponseEntity.ok().body(listRace);
     }
 
-    @PostMapping("/races")
+    @PostMapping("")
     ResponseEntity<Race> addRace(@Validated @RequestBody Race race) {
         return ResponseEntity.ok().body(raceService.insert(race));
     }
 
 
-    @PutMapping("/races/{id}")
+    @PutMapping("/{id}")
     ResponseEntity<Race> updateRace(@PathVariable(value = "id")Long id, @RequestBody Race race) {
         Race updateRace = raceService.update(id, race);
         if (updateRace == null) {
@@ -58,7 +58,7 @@ public class RaceController {
         return ResponseEntity.ok().body(updateRace);
     }
 
-    @DeleteMapping("races/{id}")
+    @DeleteMapping("/{id}")
     ResponseEntity<Race> deleteRace(@PathVariable(value = "id")Long id) {
         Optional<Race> race = raceService.findById(id);
         if (race.isEmpty()){
@@ -66,6 +66,13 @@ public class RaceController {
         }
         raceService.delete(race.get().getId());
         return ResponseEntity.accepted().build();
+    }
+
+    @RequestMapping(value = "", params = {"id_bande"}, method = RequestMethod.GET)
+    ResponseEntity<List<Race>> findByBandId(@RequestParam(value = "id_bande")Long id) {
+        List<Race> listRace;
+        listRace = bandeService.findAllRaceByBandId(id);
+        return ResponseEntity.ok().body(listRace);
     }
 
 

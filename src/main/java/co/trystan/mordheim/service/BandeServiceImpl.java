@@ -26,8 +26,8 @@ public class BandeServiceImpl implements BandeService {
     }
 
     @Override
-    public Optional<Bande> findById(Long id) {
-        return bandeRepository.findById(id);
+    public Bande findById(Long id) {
+        return bandeRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -37,9 +37,9 @@ public class BandeServiceImpl implements BandeService {
 
     @Override
     public Bande update(Long id, Bande bande){
-        Optional<Bande> optionalBande = this.findById(id);
-        if (optionalBande.isPresent()){
-            Bande bandeToUpdate = optionalBande.get();
+        Bande optionalBande = this.findById(id);
+        if (optionalBande != null){
+            Bande bandeToUpdate = optionalBande;
             bandeToUpdate.setName(bande.getName());
             return bandeRepository.save(bandeToUpdate);
         }
@@ -48,9 +48,9 @@ public class BandeServiceImpl implements BandeService {
 
     @Override
     public void delete(Long id) {
-        Optional<Bande> bande = this.findById(id);
-        if (bande.isPresent()){
-            bandeRepository.delete(bande.get());
+        Bande bande = this.findById(id);
+        if (bande != null){
+            bandeRepository.delete(bande);
         }
     }
 

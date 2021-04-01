@@ -43,11 +43,11 @@ public class BandeController {
 
     @GetMapping("/mesbandes/{id}")
     ResponseEntity<Bande> getBandeById(@PathVariable(value = "id") Long id) {
-        Optional<Bande> bande = bandeService.findById(id);
-        if (bande.isEmpty()) {
+        Bande bande = bandeService.findById(id);
+        if (bande == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(bande.get());
+        return ResponseEntity.ok().body(bande);
     }
 
 
@@ -69,11 +69,11 @@ public class BandeController {
 
     @DeleteMapping("bandes/{id}")
     ResponseEntity<Bande> deleteBande(@PathVariable(value = "id")Long id) {
-        Optional<Bande> bande = bandeService.findById(id);
-        if (bande.isEmpty()){
+        Bande bande = bandeService.findById(id);
+        if (bande == null){
             return ResponseEntity.notFound().build();
         }
-        bandeService.delete(bande.get().getId());
+        bandeService.delete(bande.getId());
         return ResponseEntity.accepted().build();
     }
 

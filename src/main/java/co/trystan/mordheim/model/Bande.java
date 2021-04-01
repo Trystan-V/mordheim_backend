@@ -1,36 +1,36 @@
 package co.trystan.mordheim.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 
 @Entity
 public class Bande {
 
     @Id
-    @Column(name = "idbande")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
 
-    public Bande(long id, String name, Joueur joueur, Race race) {
-        this.id = id;
-        this.name = name;
-        this.joueur = joueur;
-        this.race = race;
-    }
+    @ManyToOne
+    @JoinColumn(name = "joueur_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    private Joueur joueur;
 
-    public Bande() {
+    @ManyToOne
+    @JoinColumn(name = "race_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    private Race race;
 
-    }
+    @Column(name = "joueur_id")
+    private Long joueurId;
 
-    public long getId(){
+    @Column(name = "race_id")
+    private Long raceId;
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -58,18 +58,19 @@ public class Bande {
         this.race = race;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "idjoueur", referencedColumnName = "idjoueur", insertable = false, updatable = false, nullable = false)
-    private Joueur joueur;
+    public Long getJoueurId() {
+        return joueurId;
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "idrace", referencedColumnName = "idrace", insertable = false, updatable = false, nullable = false)
-    private Race race;
+    public void setJoueurId(Long joueurId) {
+        this.joueurId = joueurId;
+    }
 
-    @Column(name = "idjoueur")
-    private Long joueurid;
+    public Long getRaceId() {
+        return raceId;
+    }
 
-    @Column(name = "idrace")
-    private Long raceid;
-
+    public void setRaceId(Long raceId) {
+        this.raceId = raceId;
+    }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class Race {
 
     @Id
-    @Column(name = "idrace")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

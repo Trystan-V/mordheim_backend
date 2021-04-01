@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface BandeService {
     List<Bande> findAll(int page, int size);
 
-    Optional<Bande> findById(Long id);
+    Bande findById(Long id);
 
     Bande insert(Bande bande);
 
