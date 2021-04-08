@@ -23,6 +23,18 @@ public class Bande {
     @Column(name = "joueur_id")
     private Long joueurId;
 
+    @Override
+    public String toString() {
+        return "Bande{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", joueur=" + joueur +
+                ", race=" + race +
+                ", joueurId=" + joueurId +
+                ", raceId=" + raceId +
+                '}';
+    }
+
     @Column(name = "race_id")
     private Long raceId;
 

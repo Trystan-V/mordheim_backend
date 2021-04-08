@@ -30,7 +30,8 @@ public class BandeController {
      */
 
     @GetMapping("/mesbandes")
-    ResponseEntity<List<Bande>> getAllBande(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "10") int size){
+    ResponseEntity<List<Bande>> getAllBande(@RequestParam(name = "page", defaultValue = "0") int page,
+                                            @RequestParam(name = "size", defaultValue = "10") int size){
         List<Bande> listBande;
         listBande = bandeService.findAll(page, size);
         if (listBande.isEmpty()) {
@@ -38,8 +39,6 @@ public class BandeController {
         }
         return ResponseEntity.ok().body(listBande);
     }
-
-
 
     @GetMapping("/mesbandes/{id}")
     ResponseEntity<Bande> getBandeById(@PathVariable(value = "id") Long id) {
@@ -50,9 +49,13 @@ public class BandeController {
         return ResponseEntity.ok().body(bande);
     }
 
-
+    //Récuper l'id du joueur et de la race pour attribuer a la bande le joueur et la race
     @PostMapping("/bandes")
     ResponseEntity<Bande> addBande(@RequestBody Bande bande) {
+        //Long joueurId = bande.getJoueurId();
+        //Joueur joueur = joueurService.findById(joueurId);
+        //bande.setJoueur(joueur);
+        //System.out.println(bande.getJoueurId());
         return ResponseEntity.ok(bandeService.insert(bande));
     }
 

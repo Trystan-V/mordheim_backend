@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface RaceRepository extends JpaRepository<Race, Long> {
-    public List<Race> findByNameContaining(String name);
+    public List<Race> findAll();
 }

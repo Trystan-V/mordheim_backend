@@ -23,8 +23,8 @@ public class JoueurServiceImpl implements JoueurService {
     }
 
     @Override
-    public Optional<Joueur> findById(Long id) {
-        return joueurRepository.findById(id);
+    public Joueur findById(Long id) {
+        return joueurRepository.findById(id).orElse(null);
     }
 
 }

@@ -20,11 +20,11 @@ public class JoueurController {
 
     @GetMapping("/joueurs/{id}")
     ResponseEntity<Joueur> getJoueurById(@PathVariable(value = "id") Long id) {
-        Optional<Joueur> joueur = joueurService.findById(id);
-        if (joueur.isEmpty()) {
+        Joueur joueur = joueurService.findById(id);
+        if (joueur == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(joueur.get());
+        return ResponseEntity.ok().body(joueur);
     }
 
     @GetMapping("/joueurs")

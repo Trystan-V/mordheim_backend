@@ -22,13 +22,9 @@ public class RaceServiceImpl implements RaceService {
     }
 
     @Override
-    public List<Race> findAll(String search) {
-        if (! "".equals(search)) {
-            return raceRepository.findByNameContaining(search);
-        } else {
+    public List<Race> findAll() {
             return raceRepository.findAll();
         }
-    }
 
     @Override
     public Race insert(Race race) {

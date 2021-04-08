@@ -36,7 +36,7 @@ public class RaceController {
     ResponseEntity<List<Race>> getAllRace(@RequestParam(value = "search", defaultValue = "")String search) {
         List<Race> listRace;
         try {
-            listRace = raceService.findAll(search);
+            listRace = raceService.findAll();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
