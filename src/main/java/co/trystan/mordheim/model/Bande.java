@@ -1,6 +1,7 @@
 package co.trystan.mordheim.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Bande {
@@ -10,14 +11,17 @@ public class Bande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Pattern(regexp = "[^a-zA-Z0-9_]")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "joueur_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "joueur_id", referencedColumnName = "id",
+            insertable = false, updatable = false, nullable = false)
     private Joueur joueur;
 
     @ManyToOne
-    @JoinColumn(name = "race_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "race_id", referencedColumnName = "id",
+            insertable = false, updatable = false, nullable = false)
     private Race race;
 
     @Column(name = "joueur_id")

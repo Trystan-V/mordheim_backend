@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +52,7 @@ public class BandeController {
 
     //Récuper l'id du joueur et de la race pour attribuer a la bande le joueur et la race
     @PostMapping("/bandes")
-    ResponseEntity<Bande> addBande(@RequestBody Bande bande) {
+    ResponseEntity<Bande> addBande(@Valid @RequestBody Bande bande) {
         //Long joueurId = bande.getJoueurId();
         //Joueur joueur = joueurService.findById(joueurId);
         //bande.setJoueur(joueur);

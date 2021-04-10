@@ -24,6 +24,10 @@ public class Race {
         this.name = name;
     }
 
+    public Race() {
+        
+    }
+
     public Long getId() {
         return id;
     }
